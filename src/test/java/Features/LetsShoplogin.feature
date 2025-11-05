@@ -1,5 +1,5 @@
 Feature: Logint to lest application 
-@shop
+
 Scenario Outline: verify is abale to login
 Given  launch the browser 
 When user enters "<username>" and "<password>"
