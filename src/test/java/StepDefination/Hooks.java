@@ -20,7 +20,7 @@ public class Hooks {
 	}
 	@After
 	public void teardown() throws IOException {
-		textcontextsetup.testbase.WebDriverManager().quit();
+	//	textcontextsetup.testbase.WebDriverManager().quit();
 	
 	}
 	@AfterStep
