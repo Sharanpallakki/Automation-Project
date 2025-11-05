@@ -26,7 +26,7 @@ public class LetsShopLandingPage {
 	
 	@FindBy(xpath="(//button[@tabindex='0'])[1]")
 	WebElement Homeicon;
-	@FindBy(xpath="(/(//button[@tabindex='0'])[3]")
+	@FindBy(xpath="(//button[@tabindex='0'])[3]")
 	WebElement carticon;
 	@FindBy(xpath="//div[@class='cartSection']")
 	List<WebElement> productavilibaleincart;
@@ -46,7 +46,7 @@ public class LetsShopLandingPage {
 	        String fullText = element.getText().trim();
 	     // Split by new line and take the first line
 	     String actualtext = fullText.split("\\n")[0].trim();
-	            System.out.println("Checking element text: " + actualtext);
+//	            System.out.println("Checking element text: " + actualtext);
 
 	            if (actualtext.equalsIgnoreCase(productList)) {
 	            	WebElement el=element.findElement(By.xpath(".//button[@class='btn w-10 rounded']"));
@@ -56,9 +56,6 @@ public class LetsShopLandingPage {
 	            	}catch(Exception e) {
 	            		js.executeScript("arguments[0].click();", el);
 	            	}
-	            	
-	            
-	                //System.out.println("✅ Clicked on element with text: " + productList);
 	                
 	                break;
 	            
@@ -77,6 +74,8 @@ public class LetsShopLandingPage {
 		
 	}
 	public int getsize() {
+		//carticon.click();
+		js.executeScript("arguments[0].click();", carticon);
 		 int size = productavilibaleincart.size();
 		 return size;
 	}

@@ -7,7 +7,11 @@ Then user is able to login to appliaction
  When user adds the following products to the cart
       | ADIDAS ORIGINAL |
       | iphone 13 pro |
-Then all selected products should be added successfully
+      | ZARA COAT 3 |
+Then the cart should contain the following products:
+    | ADIDAS ORIGINAL |
+    | iphone 13 pro |
+    | ZARA COAT 3 |
 Examples:
 |username        ||    password|
 |sharanpatil377@gmail.com||Sharan@1234|
