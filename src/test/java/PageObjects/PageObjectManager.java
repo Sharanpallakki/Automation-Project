@@ -11,6 +11,7 @@ public class PageObjectManager {
 	public CheckOutPage cp;
 	public LetsShopLogin lsl;
 	public LetsShopLandingPage lslp;
+	public CartPage scp;
 	public PageObjectManager(WebDriver driver) {
 		this.driver=driver;
 	}
@@ -45,6 +46,9 @@ public class PageObjectManager {
 		
 		
 	}
-	
+	public CartPage getcartpage() {
+		scp=new CartPage(driver);
+		return scp;
+	}
 
 }

@@ -16,6 +16,8 @@ public class LetsShopLandingPage {
 	
 	public WebDriver driver;
 	JavascriptExecutor js ;
+	static  int  sum=0;
+	
 	
 	
 	public LetsShopLandingPage (WebDriver driver) {
@@ -26,10 +28,13 @@ public class LetsShopLandingPage {
 	
 	@FindBy(xpath="(//button[@tabindex='0'])[1]")
 	WebElement Homeicon;
-	@FindBy(xpath="(/(//button[@tabindex='0'])[3]")
+	@FindBy(xpath="(//button[@tabindex='0'])[3]")
 	WebElement carticon;
 	@FindBy(xpath="//div[@class='cartSection']")
 	List<WebElement> productavilibaleincart;
+	
+	@FindBy(xpath="//div[@class='card-body']//div[1]/div")
+	List<WebElement> pricelist;
 	
 	
 	  @FindBy(xpath = "//div[@class='card-body']")
@@ -42,11 +47,11 @@ public class LetsShopLandingPage {
 	        
 
 	        for (WebElement element : itemstobeadded) {
-	        WebElement nameElement = element.findElement(By.xpath("//b"));
+	     //   WebElement nameElement = element.findElement(By.xpath("//b"));
 	        String fullText = element.getText().trim();
 	     // Split by new line and take the first line
 	     String actualtext = fullText.split("\\n")[0].trim();
-	            System.out.println("Checking element text: " + actualtext);
+//	            System.out.println("Checking element text: " + actualtext);
 
 	            if (actualtext.equalsIgnoreCase(productList)) {
 	            	WebElement el=element.findElement(By.xpath(".//button[@class='btn w-10 rounded']"));
@@ -56,9 +61,6 @@ public class LetsShopLandingPage {
 	            	}catch(Exception e) {
 	            		js.executeScript("arguments[0].click();", el);
 	            	}
-	            	
-	            
-	                //System.out.println("✅ Clicked on element with text: " + productList);
 	                
 	                break;
 	            
@@ -77,9 +79,44 @@ public class LetsShopLandingPage {
 		
 	}
 	public int getsize() {
+		//carticon.click();
+		js.executeScript("arguments[0].click();", carticon);
 		 int size = productavilibaleincart.size();
 		 return size;
 	}
+	
+	public  int getproductamount( String productList) {
+		  GenericUtil gen=new GenericUtil(driver);
+		  
+	        
+
+	        for (WebElement element : itemstobeadded) {
+	        //WebElement nameElement = element.findElement(By.xpath("//b"));
+	        String fullText = element.getText().trim();
+	     // Split by new line and take the first line
+	     String actualtext = fullText.split("\\n")[0].trim();
+//	            System.out.println("Checking element text: " + actualtext);
+
+	            if (actualtext.equalsIgnoreCase(productList)) {
+	            	WebElement dollor =element.findElement(By.xpath(".//div[1]/div"));
+	            	String amountindolor=dollor.getText().trim().split(" ")[1];
+	            	Integer amount=Integer.parseInt(amountindolor);
+	            	sum=sum+amount;
+	            	WebElement el=element.findElement(By.xpath(".//button[@class='btn w-10 rounded']"));
+	            	gen.waitForElementClickable(driver, el, 30);
+	            	try {
+	            		el.click();
+	            	}catch(Exception e) {
+	            		js.executeScript("arguments[0].click();", el);
+	            	}
+	            	//System.out.println("total sum"+sum);
+	                break;
+	            
+	        }
+	            
+	        }
+			return sum;
+	  }
 	
 	
 

@@ -44,12 +44,7 @@ public class LandingPageStepDefination{
 		   textcontextsetup.productlandingpage=lp.exatactproductlandingpage();
 		 //  lp.gotodeals();
 	}
-	/*@When("^Added (.+) items of the selected product to cart$")
-	public void added_items_of_the_selected_product_to_cart(int quantity ) {
-		
-		lp.addincrement(quantity);
-		lp.addtocart();
-	}*/
+
 	@When("Added {string} items of the selected product to cart")
 	public void added_items_of_the_selected_product_to_cart(String quanity) {
 		lp.addincrement(Integer.parseInt(quanity));
