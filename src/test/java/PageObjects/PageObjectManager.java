@@ -12,6 +12,8 @@ public class PageObjectManager {
 	public LetsShopLogin lsl;
 	public LetsShopLandingPage lslp;
 	public CartPage scp;
+	public AmazonPageobjectland app;
+	AmazonCart ac;
 	public PageObjectManager(WebDriver driver) {
 		this.driver=driver;
 	}
@@ -49,6 +51,14 @@ public class PageObjectManager {
 	public CartPage getcartpage() {
 		scp=new CartPage(driver);
 		return scp;
+	}
+	public AmazonPageobjectland getamazon() {
+		app=new AmazonPageobjectland(driver);
+		return app;
+	}
+	public AmazonCart getamazoncart() {
+		ac=new AmazonCart(driver);
+		return  ac;
 	}
 
 }
